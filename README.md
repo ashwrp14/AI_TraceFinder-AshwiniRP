@@ -1,11 +1,38 @@
-📌 Submission Details
+# Scanner Source Identification Project  
 
-1. Fork this repository to your own GitHub account, naming it AI_TraceFinder-[YourName] (replace [YourName] with your actual name).
+## 1. Data Collection & Labeling  
+- Manually scan sample images using multiple scanners  
+- Assign proper labels based on source device  
 
-2. Create a folder with your name inside your forked repo and place all your work (code, dataset links, results, and a README).
+## 2. Image Preprocessing  
+- Resize, denoise, convert to grayscale if needed  
+- Normalize pixels and remove non-artifact content  
 
-3. Make regular and meaningful commits for every milestone.
+## 3. Feature Extraction  
+- Extract noise patterns using filters (wavelet, FFT)  
+- Compute PRNU, texture descriptors, edge patterns  
 
-4. Push your changes to your forked repository or upload your work manually.
+---
 
-5. Update your repository at every milestone to reflect your progress.
+## Milestone 1: Dataset Collection & Preprocessing  
+
+### Week 1  
+- Collect scanned document samples from different scanner devices (minimum 3–5 models/brands).  
+- Create a labeled dataset (e.g., scanner_model, file_name, etc.).  
+- Analyze basic image properties: resolution, format, color channel, etc.  
+
+### Week 2  
+- Perform image preprocessing:  
+  - Resize all images to a fixed dimension  
+  - Convert to grayscale if needed  
+  - Denoise (optional)  
+- Normalize and structure the dataset for model training.  
+
+---
+
+## Milestone 2: Feature Engineering & Baseline Modeling  
+
+### Week 3  
+- Extract hand-crafted features like:  
+  - Noise patterns  
+  - Frequency domain features (e.g., FFT)  
