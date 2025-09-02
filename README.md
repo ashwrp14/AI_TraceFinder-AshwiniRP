@@ -1,38 +1,41 @@
-# Scanner Source Identification Project  
+# AI TraceFinder - Ashwini R P
 
-## 1. Data Collection & Labeling  
-- Manually scan sample images using multiple scanners  
-- Assign proper labels based on source device  
-
-## 2. Image Preprocessing  
-- Resize, denoise, convert to grayscale if needed  
-- Normalize pixels and remove non-artifact content  
-
-## 3. Feature Extraction  
-- Extract noise patterns using filters (wavelet, FFT)  
-- Compute PRNU, texture descriptors, edge patterns  
+This project focuses on **image preprocessing and feature extraction** techniques for document analysis.  
+It includes work on **Flat-Field Correction, Official Dataset Features, and Wikipedia Dataset Features**.
 
 ---
 
-## Milestone 1: Dataset Collection & Preprocessing  
-
-### Week 1  
-- Collect scanned document samples from different scanner devices (minimum 3–5 models/brands).  
-- Create a labeled dataset (e.g., scanner_model, file_name, etc.).  
-- Analyze basic image properties: resolution, format, color channel, etc.  
-
-### Week 2  
-- Perform image preprocessing:  
-  - Resize all images to a fixed dimension  
-  - Convert to grayscale if needed  
-  - Denoise (optional)  
-- Normalize and structure the dataset for model training.  
+## 📂 Project Structure
+- **flatfield_features/** → Preprocessed dataset with flat-field correction.  
+- **official_features/** → Features extracted from the official dataset.  
+- **wikipedia_features/** → Features extracted from the Wikipedia dataset.  
+- **notebooks/** → Jupyter notebooks (`.ipynb`) containing preprocessing and feature extraction steps.  
 
 ---
 
-## Milestone 2: Feature Engineering & Baseline Modeling  
+## ⚙️ Methods Used
+- Grayscale Conversion  
+- Wavelet Transform  
+- FFT (Fast Fourier Transform)  
+- PRNU (Photo-Response Non-Uniformity) Extraction  
+- Feature Engineering for classification  
 
-### Week 3  
-- Extract hand-crafted features like:  
-  - Noise patterns  
-  - Frequency domain features (e.g., FFT)  
+---
+
+## 📊 Datasets
+The datasets used in this project are stored in Google Drive:  
+- [Flatfield Features](https://drive.google.com/drive/folders/14e0Ml48Vd6fgq56vAN9NvJeL0pDNhzFX?usp=drive_link)  
+- [Official Features](https://drive.google.com/drive/folders/1Uetwek92qsx7T3mlNe6DteDyBZh631FP?usp=drive_link)  
+- [Wikipedia Features](https://drive.google.com/drive/folders/1PAUDTxNcrMMimqn9dWtddJ9NJCYqKRDX?usp=drive_link)  
+
+---
+
+## 🚀 Future Work
+- Classification using **SVM, Random Forest, and Neural Networks**  
+- Improving accuracy with advanced feature selection  
+
+---
+
+## 👩‍💻 Author
+**Ashwini R P**  
+GitHub: [ashwrp14](https://github.com/ashwrp14)  
