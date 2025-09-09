@@ -159,7 +159,7 @@ The datasets used in this project are stored in Google Drive:
 
 ## 🚀 Live Demo
 
-🔗 [ScannerIdentifier App on Hugging Face Spaces](https://huggingface.co/spaces/ashwrp14/ScannerIdentifier)
+🔗 [ScannerIdentifier App on Hugging Face Spaces](https://huggingface.co/spaces/ashwrp14/AI_FORENSIC_SCANNER)
 
 Upload a PRNU image to identify the scanner model and view Grad-CAM overlays.
 
