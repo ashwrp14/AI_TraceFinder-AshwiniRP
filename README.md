@@ -1,6 +1,6 @@
 # 🧠 AI TraceFinder — Scanner Identification by Ashwini R P
 
-This repository presents a forensic-grade pipeline for identifying the source scanner of a document image using handcrafted features and deep learning. The core model used is **XGBoost**, applied to both training and testing phases for robust classification. The system includes preprocessing, feature extraction, explainability via Grad-CAM, and deployment via Gradio.
+This repository presents a forensic-grade pipeline for identifying the source scanner of a document image using handcrafted features and a single, robust classifier: **XGBoost**. The system includes preprocessing, feature extraction, model training and testing, explainability via Grad-CAM, and deployment via Gradio.
 
 ---
 
@@ -50,8 +50,8 @@ This repository presents a forensic-grade pipeline for identifying the source sc
 | Week | Milestone |
 |------|-----------|
 | 1–2  | Dataset collection, labeling, preprocessing |
-| 3–4  | Feature engineering, baseline modeling |
-| 5–6  | XGBoost training, Grad-CAM explainability |
+| 3–4  | Feature engineering, XGBoost modeling |
+| 5–6  | Validation, Grad-CAM explainability |
 | 7–8  | Gradio deployment, documentation, demo |
 
 ---
@@ -67,11 +67,7 @@ This repository presents a forensic-grade pipeline for identifying the source sc
 
 ---
 
-## 📊 Results & Models
-
-This repository includes all components of the forensic scanner identification pipeline, including feature sets, trained models, scalers, encoders, residuals, and prediction logs. It supports hybrid, stacked, SVM, RF, LGBM, and XGBoost classifiers with tampering detection and confidence scoring.
-
-### 🔍 Feature Sets
+## 📊 Results & Prediction Logs
 
 | File | Description |
 |------|-------------|
@@ -79,53 +75,6 @@ This repository includes all components of the forensic scanner identification p
 | Raw Features | Original extracted features |
 | Flatfield Residuals | Residuals from flatfield correction |
 | Official Wiki Residuals | Residuals from official scanner dataset |
-
-### ⚙️ Hybrid Model Components
-
-| File | Description |
-|------|-------------|
-| Hybrid Feature Scaler | Scaler used for hybrid model |
-| Hybrid Label Encoder | Label encoder for hybrid classes |
-| Hybrid Training History | Training metrics and loss curves |
-| Hybrid Model (.keras) | Intermediate hybrid model |
-| Hybrid Final Model (.keras) | Final hybrid model with tampering detection |
-
-### 🌲 Random Forest (RF) Components
-
-| File | Description |
-|------|-------------|
-| RF Label Encoder | Label encoder for RF model |
-| RF Scaler | Feature scaler for RF |
-| RF Model | Trained RF model |
-
-### 🌟 LightGBM (LGBM) Components
-
-| File | Description |
-|------|-------------|
-| LGBM Label Encoder | Label encoder for LGBM |
-| LGBM Scaler | Scaler for LGBM |
-| LGBM Model | Trained LGBM model |
-
-### 🧠 Stacked Model Components
-
-| File | Description |
-|------|-------------|
-| Stacked Label Encoder | Label encoder for stacked model |
-| Stacked Scaler | Scaler for stacked model |
-| Stacked Model | Final stacked classifier |
-
-### 💻 SVM Model Components
-
-| File | Description |
-|------|-------------|
-| SVM Label Encoder | Label encoder for SVM |
-| SVM Scaler | Scaler for SVM |
-| SVM Model | Trained SVM model |
-
-### 📊 Prediction Logs
-
-| File | Description |
-|------|-------------|
 | Prediction Log CSV | Batch predictions with confidence scores |
 
 ---
@@ -159,9 +108,9 @@ For questions, collaborations, or citations, please credit:
 
 ## 🛠️ Deployment Notes
 
-- All models are compatible with Gradio, Streamlit, and Flask interfaces  
-- Ensure matching encoders and scalers are used during inference  
-- Tampering warnings and confidence scores are integrated in the hybrid pipeline  
+- The model is deployed via Gradio and supports live image upload  
+- Ensure feature extraction matches training format before inference  
+- Confidence scores and Grad-CAM overlays are integrated  
 - For Hugging Face Spaces, include `requirements.txt`, `app.py`, and this `README.md`  
 
 ---
