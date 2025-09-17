@@ -1,15 +1,6 @@
 # 🧠 AI TraceFinder — Scanner Identification by Ashwini R P
 
-This project presents a forensic-grade pipeline for identifying the source scanner of a document image using both handcrafted features and deep learning. It includes preprocessing, feature extraction, CNN training with k-fold validation, explainability, and deployment via Gradio.
-
----
-
-## 📂 Project Structure
-
-- `flatfield_features/` → Preprocessed dataset with flat-field correction  
-- `official_features/` → Features extracted from the official dataset  
-- `wikipedia_features/` → Features extracted from the Wikipedia dataset  
-- `notebooks/` → Jupyter notebooks (.ipynb) containing preprocessing and feature extraction steps  
+This repository presents a forensic-grade pipeline for identifying the source scanner of a document image using handcrafted features and deep learning. The core model used is **XGBoost**, applied to both training and testing phases for robust classification. The system includes preprocessing, feature extraction, explainability via Grad-CAM, and deployment via Gradio.
 
 ---
 
@@ -20,153 +11,157 @@ This project presents a forensic-grade pipeline for identifying the source scann
 - FFT (Fast Fourier Transform)  
 - PRNU (Photo-Response Non-Uniformity) Extraction  
 - Feature Engineering for classification  
-- CNN-based feature extraction and modeling  
+- XGBoost-based training and testing  
 - Grad-CAM for explainability  
 
 ---
 
 ## 📌 End-to-End Workflow
 
-### 1. Data Collection & Labeling
-- Manually scanned document samples using multiple scanner models (3–5 brands)
-- Assigned labels based on source device metadata
+1. **Data Collection & Labeling**  
+   - Scanned samples from 3–5 scanner brands  
+   - Labeled using device metadata  
 
-### 2. Image Preprocessing
-- Resized images to uniform dimensions
-- Applied denoising and grayscale conversion (if needed)
-- Normalized pixel values and removed non-artifact content
+2. **Image Preprocessing**  
+   - Resized, denoised, and normalized images  
+   - Removed non-artifact content  
 
-### 3. Feature Extraction
-- Extracted noise patterns using wavelet filters and FFT
-- Computed PRNU signatures, texture descriptors (LBP), and edge maps
+3. **Feature Extraction**  
+   - Wavelet + FFT-based noise patterns  
+   - PRNU signatures, LBP textures, edge maps  
 
-### 4. Model Training
-- Trained a **Convolutional Neural Network (CNN)** on raw PRNU images
-- Applied **k-fold cross-validation** to ensure robustness (typically k=5)
-- Used image augmentation (brightness, rotation) for generalization
-- Tracked training metrics (accuracy, loss) across folds
+4. **Model Training (XGBoost)**  
+   - Trained XGBoost classifier on extracted features  
+   - Applied k-fold validation (typically k=5)  
+   - Augmentation: brightness, rotation  
 
-### 5. Explainability
-- Applied **Grad-CAM** to visualize scanner-specific activation regions
-- Interpreted model decisions and feature importance
+5. **Explainability**  
+   - Grad-CAM overlays for scanner-specific regions  
+   - Feature importance interpretation  
 
-### 6. Output System
-- Upload scanned image → return predicted scanner model
-- Display confidence score and Grad-CAM overlay
+6. **Output System**  
+   - Upload scanned image → predict scanner model  
+   - Display confidence score + Grad-CAM overlay  
 
 ---
 
-## 📅 Week-wise Milestone Implementation
+## 📅 Week-wise Milestones
 
-### 🔹 Milestone 1: Dataset Collection & Preprocessing
-
-**Week 1**
-- Collected samples from multiple scanners
-- Created labeled dataset with metadata
-- Analyzed image properties (resolution, format, color channels)
-
-**Week 2**
-- Resized and normalized all images
-- Applied grayscale conversion and optional denoising
-- Structured dataset for training
-
----
-
-### 🔹 Milestone 2: Feature Engineering & Baseline Modeling
-
-**Week 3**
-- Extracted handcrafted features:
-  - Noise maps
-  - FFT-based frequency features
-  - LBP texture descriptors
-- Visualized scanner-specific patterns
-
-**Week 4**
-- Trained baseline models: Logistic Regression, SVM, Random Forest
-- Evaluated using accuracy and confusion matrix
-- Logged performance and limitations
-
----
-
-### 🔹 Milestone 3: Deep Learning + Explainability
-
-**Week 5**
-- Built and trained CNN on raw images
-- Applied data augmentation (brightness, rotation)
-- Tuned hyperparameters and tracked training curves
-
-**Week 6**
-- Evaluated CNN performance (accuracy, F1-score)
-- Applied Grad-CAM for model interpretability
-
----
-
-### 🔹 Milestone 4: Deployment & Final Report
-
-**Week 7**
-- Built frontend UI using Gradio
-- Enabled image upload and live prediction
-- Logged predictions and enabled result download
-
-**Week 8**
-- Finalized documentation and system architecture
-- Added training results, model comparisons, and screenshots
-- Prepared presentation slides and demo walkthrough
+| Week | Milestone |
+|------|-----------|
+| 1–2  | Dataset collection, labeling, preprocessing |
+| 3–4  | Feature engineering, baseline modeling |
+| 5–6  | XGBoost training, Grad-CAM explainability |
+| 7–8  | Gradio deployment, documentation, demo |
 
 ---
 
 ## 📈 Evaluation Criteria
 
-### ✅ Completion of Tasks
-- Dataset collected and labeled correctly
-- Feature engineering and modeling completed
-- UI integration and testing done
-
-### ✅ Model Quality
-- CNN trained with k-fold validation
-- Classification accuracy >85%
-- Distinguishes between 3–5 scanner models
-- Robust to image format and resolution changes
-
-### ✅ Documentation & Demo
-- Clear methodology explanation
-- Performance charts (accuracy, confusion matrix)
-- Explainability insights (Grad-CAM overlays)
+✅ Task Completion  
+✅ Model Accuracy (>85%)  
+✅ Robustness across formats  
+✅ UI Integration  
+✅ Explainability (Grad-CAM)  
+✅ Documentation & Demo  
 
 ---
 
-## 📊 Results
+## 📊 Results & Models
 
-The results generated from this project are stored in Google Drive:
+This repository includes all components of the forensic scanner identification pipeline, including feature sets, trained models, scalers, encoders, residuals, and prediction logs. It supports hybrid, stacked, SVM, RF, LGBM, and XGBoost classifiers with tampering detection and confidence scoring.
 
-- [Flatfield Features](https://drive.google.com/drive/folders/14e0Ml48Vd6fgq56vAN9NvJeL0pDNhzFX?usp=drive_link)  
-- [Official Features](https://drive.google.com/drive/folders/1Uetwek92qsx7T3mlNe6DteDyBZh631FP?usp=drive_link)  
-- [Wikipedia Features](https://drive.google.com/drive/folders/1PAUDTxNcrMMimqn9dWtddJ9NJCYqKRDX?usp=drive_link)  
-- [models](https://drive.google.com/drive/folders/1m1KiKg_51F_MWVVwMDUtiXgbANx8JtCi?usp=drive_link)
+### 🔍 Feature Sets
+
+| File | Description |
+|------|-------------|
+| Enhanced Features | Final enhanced feature matrix |
+| Raw Features | Original extracted features |
+| Flatfield Residuals | Residuals from flatfield correction |
+| Official Wiki Residuals | Residuals from official scanner dataset |
+
+### ⚙️ Hybrid Model Components
+
+| File | Description |
+|------|-------------|
+| Hybrid Feature Scaler | Scaler used for hybrid model |
+| Hybrid Label Encoder | Label encoder for hybrid classes |
+| Hybrid Training History | Training metrics and loss curves |
+| Hybrid Model (.keras) | Intermediate hybrid model |
+| Hybrid Final Model (.keras) | Final hybrid model with tampering detection |
+
+### 🌲 Random Forest (RF) Components
+
+| File | Description |
+|------|-------------|
+| RF Label Encoder | Label encoder for RF model |
+| RF Scaler | Feature scaler for RF |
+| RF Model | Trained RF model |
+
+### 🌟 LightGBM (LGBM) Components
+
+| File | Description |
+|------|-------------|
+| LGBM Label Encoder | Label encoder for LGBM |
+| LGBM Scaler | Scaler for LGBM |
+| LGBM Model | Trained LGBM model |
+
+### 🧠 Stacked Model Components
+
+| File | Description |
+|------|-------------|
+| Stacked Label Encoder | Label encoder for stacked model |
+| Stacked Scaler | Scaler for stacked model |
+| Stacked Model | Final stacked classifier |
+
+### 💻 SVM Model Components
+
+| File | Description |
+|------|-------------|
+| SVM Label Encoder | Label encoder for SVM |
+| SVM Scaler | Scaler for SVM |
+| SVM Model | Trained SVM model |
+
+### 📊 Prediction Logs
+
+| File | Description |
+|------|-------------|
+| Prediction Log CSV | Batch predictions with confidence scores |
 
 ---
 
-## 📂 Datasets
+## 📂 Dataset Links (Google Drive)
 
-The datasets used in this project are stored in Google Drive:
-
-- [Flatfield Dataset](https://drive.google.com/drive/folders/11k9GJLxh8Jc-CkBvwuHS7vlFnTIp4h5d?usp=drive_link)  
-- [Official Dataset](https://drive.google.com/drive/folders/19gP5nYPHLFrrqmWCQ3QmUyKyL_rAOiNp?usp=drive_link)  
-- [Tampered Images](https://drive.google.com/drive/folders/1hZqtN8zk6sXQY_C_pCvahxNFOtoDXSpo?usp=drive_link)  
-- [Wikipedia Dataset](https://drive.google.com/drive/folders/18nko4wDnxcqOPLSPIqtxaj3EE9sAHbaJ?usp=drive_link)  
+- Flatfield Images: [Link](https://drive.google.com/file/d/1O-rs0iDSDvFzZS4G-zoX1OHSd3MA4Kk1/view?usp=drive_link)  
+- Official Documents: [Link](https://drive.google.com/file/d/1kGOZzX1Yzwrdh_ZEYNv62rE7YcZgoLCX/view?usp=drive_link)  
+- Tampered Images: [Link](https://drive.google.com/file/d/15U_RGPIKUHyBSH-3A-ohZB2vleMzR56x/view?usp=drive_link)  
+- Wikipedia Documents: [Link](https://drive.google.com/file/d/1w44DYWJQ14Jl97UmUA8FW2v6yGxERFWr/view?usp=drive_link)  
 
 ---
 
 ## 🚀 Live Demo
 
-🔗 [ScannerIdentifier App on Hugging Face Spaces](https://huggingface.co/spaces/ashwrp14/AI_FORENSIC_SCANNER)
-
+🔗 [ScannerIdentifier App on Hugging Face Spaces](https://huggingface.co/spaces/ashwrp14/AI_tracer)  
 Upload a PRNU image to identify the scanner model and view Grad-CAM overlays.
 
 ---
 
-## 👩‍💻 Author
+## ✍️ Author
 
-**Ashwini R P**  
+Developed and curated by **Ashwini R P**  
 GitHub: [ashwrp14](https://github.com/ashwrp14)  
-Project: Infosys Virtual Forensics Initiative
+Project: Infosys Virtual Forensics Initiative  
+
+For questions, collaborations, or citations, please credit:  
+**Ashwini | Forensic Scanner Identification Toolkit**
+
+---
+
+## 🛠️ Deployment Notes
+
+- All models are compatible with Gradio, Streamlit, and Flask interfaces  
+- Ensure matching encoders and scalers are used during inference  
+- Tampering warnings and confidence scores are integrated in the hybrid pipeline  
+- For Hugging Face Spaces, include `requirements.txt`, `app.py`, and this `README.md`  
+
+---
